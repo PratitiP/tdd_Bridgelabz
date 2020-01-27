@@ -52,7 +52,7 @@ function calAggregateFare(rides) {
     for (ride of rides) {
         totalAggregateFare = totalAggregateFare + calculateFare(ride.distance, ride.time, ride.cat);
     }
-    console.log(totalAggregateFare);
+    // console.log(totalAggregateFare);
     return totalAggregateFare;
 }
 
@@ -69,8 +69,48 @@ function cabInvoiceGenerator(rides) {
 
 }
 
-let rides = [
-    { distance: 5, time: 8, cat:'normal'}, 
-    { distance: 15, time: 20, cat:'premium' }, 
-    { distance: 30, time: 40, cat:'normal' }];
-cabInvoiceGenerator(rides);
+exports.getRides = function(userID) {
+    //case 1 - check function for no arguments
+    if (userID == "")
+        return 0;
+
+    //case 2 - check function for undefined arguments
+    if (userID == undefined)
+        return 0;
+
+    //case 3 - check function for non number arguments
+    if (isNaN(userID))
+        return 0;
+    
+    //case 4 - check function for negative number arguments
+     if (isNaN(userID))
+     return 0;
+
+
+    //case 5 - get rides for userID from RidesRepo
+    let ridesForUserID = RideRepository.find(obj => {
+        if (obj.userID === userID)
+            return obj;
+    });
+
+    //case 6 - check if user exists in repo
+    if (ridesForUserID == undefined)
+        return 0;
+
+    // console.log(ridesForUserID.rides);
+    return ridesForUserID.rides;
+}
+let rides1 = [
+    { distance: 5, time: 8, cat: 'normal' },
+    { distance: 15, time: 20, cat: 'premium' },
+    { distance: 30, time: 40, cat: 'normal' }];
+
+let rides2 = [
+    { distance: 15, time: 50, cat: 'normal' },
+    { distance: 5, time: 10, cat: 'normal' },
+    { distance: 30, time: 30, cat: 'premium' }];
+
+let RideRepository = [{ userID: 1, rides: rides1 }, { userID: 2, rides: rides2 }];
+
+// let userRides = getRides(1);
+// cabInvoiceGenerator(userRides);
