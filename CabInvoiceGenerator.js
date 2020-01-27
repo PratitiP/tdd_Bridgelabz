@@ -1,10 +1,7 @@
+
 const BASE_FAIR = 5;
 const FARE_PER_KM = 10;
 const FARE_PER_MIN = 1;
-
-
-// console.log(calculateFare(20, 30));
-
 
 function calculateFare(distance, time) {
 
@@ -29,9 +26,6 @@ function calculateFare(distance, time) {
     return fare;
 }
 
-let rides = [{ distance: 5, time: 8 }, { distance: 15, time: 20 }, { distance: 30, time: 40 }];
-calAggregateFare(rides);
-
 function calAggregateFare(rides) {
 
     //case 1 - if number of rides is not zero
@@ -43,9 +37,21 @@ function calAggregateFare(rides) {
         totalAggregateFare = totalAggregateFare + calculateFare(ride.distance, ride.time);
     }
     console.log(totalAggregateFare);
-
     return totalAggregateFare;
 }
 
+function cabInvoiceGenerator(rides){
+    let totalAggregateFare=calAggregateFare(rides);
+    let nRides=rides.length;
+    let averageFarePerRide=totalAggregateFare/nRides;
+    let invoice={
+        totalFare:totalAggregateFare,
+        noOfRides:rides.length,
+        averageFare:Number((totalAggregateFare/nRides).toFixed(2))
+        }
+    return invoice;
 
+}
 
+let rides = [{ distance: 5, time: 8 }, { distance: 15, time: 20 }, { distance: 30, time: 40 }];
+cabInvoiceGenerator(rides);
