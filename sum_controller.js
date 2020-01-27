@@ -22,5 +22,13 @@ describe('Test for sum of two numbers',function(){
         let res=sum(2,5);
         assert.equal(res,7);
     });
+    it('check function for negative arguments',function(){
+        let res=sum(-2,5);
+        assert.equal(res,3);
+    });
+    it('check function for float arguments',function(){
+        let res=sum(2,5.6);
+        assert.equal(res,7.6);
+    });
 });
 
