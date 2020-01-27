@@ -1,34 +1,20 @@
-const sum=require('./sum');
-const assert=require('assert');
+function sum(a, b) {
+    //case 1 : check function for no arguments
+    if (a == "" || b == "")
+        return 0;
 
-describe('Test for sum of two numbers',function(){
-    it('check function for no arguments',function(){
-        let res=sum();
-        assert.equal(res,0);
-    });
-    it('check function for partial arguments',function(){
-        let res=sum(2);
-        assert.equal(res,0);
-    });
-    it('check function for invalid number arguments',function(){
-        let res=sum('hi',5);
-        assert.equal(res,0);
-    });
-    it('check function for invalid number arguments',function(){
-        let res=sum('',2);;
-        assert.equal(res,0);
-    });
-    it('check function for valid arguments',function(){
-        let res=sum(2,5);
-        assert.equal(res,7);
-    });
-    it('check function for negative arguments',function(){
-        let res=sum(-2,5);
-        assert.equal(res,3);
-    });
-    it('check function for float arguments',function(){
-        let res=sum(2,5.6);
-        assert.equal(res,7.6);
-    });
-});
+    //case 2 : check function for partial arguments
+    if (typeof (a) == 'undefined' || typeof (b) == 'undefined')
+        return 0;
 
+    //case 3 : check for invalid integer arguments
+    if (isNaN(a) || isNaN(b))
+        return 0;
+
+    //case 4 : check function for valid arguments
+    let c = a + b;
+    return c;
+
+}
+
+module.exports = sum;
