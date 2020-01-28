@@ -36,5 +36,15 @@ describe('Tests for function feetToInch with feet number',function(){
         let res=unitConvertor.unitConversion(1);
         assert.equal(res,0);
     });
+
+    it('check function - value check for inquality',function(){
+        let res=unitConvertor.unitConversion(1,'ft','in');
+        assert.notEqual(res,1);
+    });
+
+    it('check function - value check for inquality',function(){
+        let res=unitConvertor.unitConversion(1,'in','ft');
+        assert.notEqual(res,1);
+    });
 });
 
