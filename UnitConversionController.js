@@ -1,6 +1,8 @@
 
 
-exports.inchToFeetConversion=function(num){
-    let feet=num/12;
-    return feet;
+exports.feetToInchConversion=function(feet){
+    
+    
+    let inch=feet*12;
+    return inch;
 }
