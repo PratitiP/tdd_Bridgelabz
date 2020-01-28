@@ -1,20 +1,12 @@
 function sum(a, b) {
-    //case 1 : check function for no arguments
-    if (a == "" || b == "")
+    //case 1 : check function for empty string or undefined or null
+    if (a === "" || b === "" ||
+        typeof (a) == 'undefined' || typeof (b) == 'undefined' ||
+        isNaN(a) || isNaN(b) || a === null || b === null)
         return 0;
 
-    //case 2 : check function for partial arguments
-    if (typeof (a) == 'undefined' || typeof (b) == 'undefined')
-        return 0;
-
-    //case 3 : check for invalid integer arguments
-    if (isNaN(a) || isNaN(b))
-        return 0;
-
-    //case 4 : check function for valid arguments
-    let c = a + b;
-    return c;
-
+    //case 4 : sum the arguments
+    return a + b;
 }
 
 module.exports = sum;

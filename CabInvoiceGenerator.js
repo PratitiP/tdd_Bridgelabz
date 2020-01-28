@@ -1,29 +1,23 @@
 
-const BASE_FAIR_NORMAL = 5;
-const FARE_PER_KM_NORMAL = 10;
-const FARE_PER_MIN_NORMAL = 1;
-const BASE_FAIR_PREMIUM = 20;
-const FARE_PER_KM_PREMIUM = 15;
-const FARE_PER_MIN_PREMIUM = 2;
-const CATEGORY_NORMAL = 'normal';
-const CATEGORY_PREMIUM = 'premium';
+const BASE_FAIR_NORMAL = 5, 
+    FARE_PER_KM_NORMAL = 10,
+    FARE_PER_MIN_NORMAL = 1,
+    BASE_FAIR_PREMIUM = 20,
+    FARE_PER_KM_PREMIUM = 15,
+    FARE_PER_MIN_PREMIUM = 2,
+    CATEGORY_NORMAL = 'normal',
+    CATEGORY_PREMIUM = 'premium';
 
 exports.calculateFare=function (distance, time, category) {
 
-    //case 1 - check function for no arguments
-    if (distance == "" || time == "")
+    //case 1 - check function for no arguments, partial argumants, non number arguments, negative arguments
+    if (distance === "" || time === "" || 
+        typeof (distance) === 'undefined' || typeof (time) === 'undefined' ||
+        typeof (distance) !== 'number' || typeof (time) !== 'number'||
+        distance < 0 || time < 0)
+
         return 0;
 
-    //case 2 - check function for partial argumants
-    if (typeof (distance) === 'undefined' || typeof (time) === 'undefined')
-        return 0;
-    //case 3 - check function for non number arguments
-    if (typeof (distance) !== 'number' || typeof (time) !== 'number')
-        return 0;
-
-    //case 4 - check function for negative arguments
-    if (distance < 0 || time < 0)
-        return 0;
 
 
     //for category
