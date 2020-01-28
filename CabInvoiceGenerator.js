@@ -8,28 +8,33 @@ const FARE_PER_MIN_PREMIUM = 2;
 const CATEGORY_NORMAL = 'normal';
 const CATEGORY_PREMIUM = 'premium';
 
-function calculateFare(distance, time, category) {
+exports.calculateFare=function (distance, time, category) {
 
-    //case 1 - check if no arguments
+    //case 1 - check function for no arguments
     if (distance == "" || time == "")
         return 0;
 
-    //case 2 - check if partial argumants
+    //case 2 - check function for partial argumants
     if (typeof (distance) === 'undefined' || typeof (time) === 'undefined')
         return 0;
-    //case 3 - check if non number arguments
+    //case 3 - check function for non number arguments
     if (typeof (distance) !== 'number' || typeof (time) !== 'number')
         return 0;
 
-    //case 4 - check for negative arguments
+    //case 4 - check function for negative arguments
     if (distance < 0 || time < 0)
         return 0;
 
 
     //for category
-    //case 1 - check if category is undefined
+    //case 5 - check if category is undefined
     if (typeof (category) == 'undefined')
-        category = normal;
+        category = 'normal';
+
+    //case 6 - check if category is other than normal or premium
+    let cat=category.toLowerCase()
+    if(cat === CATEGORY_NORMAL && cat===CATEGORY_PREMIUM)
+        return 0;
 
     //calculate fare for passed values
     let fare = 0;
@@ -42,22 +47,31 @@ function calculateFare(distance, time, category) {
     return fare;
 }
 
-function calAggregateFare(rides) {
+exports.calAggregateFare=function(rides) {
 
-    //case 1 - if number of rides is not zero
-    if (rides.length <= 0)
+    //case 1 - check function for no arguments
+    if(rides==undefined)
         return 0;
 
+    //case 2 - check function for type of rides
+    if(typeof(rides)!='object')
+        return 0;
+
+    //case 3 - check function for rides size if it is zero
+    if (rides.length == 0)
+        return 0;
+
+    //case 4 - check function for valid input rides
     let totalAggregateFare = 0;
     for (ride of rides) {
-        totalAggregateFare = totalAggregateFare + calculateFare(ride.distance, ride.time, ride.cat);
+        totalAggregateFare = totalAggregateFare + this.calculateFare(ride.distance, ride.time, ride.cat);
     }
     // console.log(totalAggregateFare);
     return totalAggregateFare;
 }
 
-function cabInvoiceGenerator(rides) {
-    let totalAggregateFare = calAggregateFare(rides);
+exports.cabInvoiceGenerator = function (rides) {
+    let totalAggregateFare = this.calAggregateFare(rides);
     let nRides = rides.length;
     let averageFarePerRide = Number((totalAggregateFare / nRides).toFixed(2));
     let invoice = {
@@ -69,7 +83,7 @@ function cabInvoiceGenerator(rides) {
 
 }
 
-exports.getRides = function(userID) {
+exports.getRides = function (userID) {
     //case 1 - check function for no arguments
     if (userID == "")
         return 0;
@@ -81,10 +95,10 @@ exports.getRides = function(userID) {
     //case 3 - check function for non number arguments
     if (isNaN(userID))
         return 0;
-    
+
     //case 4 - check function for negative number arguments
-     if (isNaN(userID))
-     return 0;
+    if (isNaN(userID))
+        return 0;
 
 
     //case 5 - get rides for userID from RidesRepo
@@ -100,6 +114,8 @@ exports.getRides = function(userID) {
     // console.log(ridesForUserID.rides);
     return ridesForUserID.rides;
 }
+
+
 let rides1 = [
     { distance: 5, time: 8, cat: 'normal' },
     { distance: 15, time: 20, cat: 'premium' },
@@ -112,5 +128,6 @@ let rides2 = [
 
 let RideRepository = [{ userID: 1, rides: rides1 }, { userID: 2, rides: rides2 }];
 
-// let userRides = getRides(1);
-// cabInvoiceGenerator(userRides);
+// console.log(this.calculateFare(30,50));
+// let userRides = this.getRides(1);
+// this.cabInvoiceGenerator(userRides);
