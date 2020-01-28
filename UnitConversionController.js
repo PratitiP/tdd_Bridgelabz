@@ -1,33 +1,25 @@
 
 
-exports.feetToInchConversion=function(feet){
+exports.unitConversion = function (length, lUnit, cUnit) {
     //case 1 - null check
-    if(feet==undefined)
+    if (length == undefined)
         return 0;
 
     //case 2 - type check
-    if(isNaN(feet))
+    if (isNaN(length))
         return 0;
     //case 3 - check negative arguments
-    if(feet<0)
+    if (length < 0)
         return 0;
 
-    let inch=feet*12;
-    return inch;
+    let res=0;
+    //refactor to follow dry and solid principal 
+    if (lUnit == 'ft' && cUnit == 'in')
+        res = length * 12;
+
+    if (lUnit == 'in' && cUnit == 'ft')
+        res = length / 12;
+
+    return res;
 }
 
-exports.inchToFeetConversion=function(inch){
-    //case 1 - null check
-    if(inch==undefined)
-        return 0;
-
-    //case 2 - type check
-    if(isNaN(inch))
-        return 0;
-    //case 3 - check negative arguments
-    if(inch<0)
-        return 0;
-
-    let feet=inch/12;
-    return feet;
-}
