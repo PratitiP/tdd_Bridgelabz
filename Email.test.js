@@ -9,7 +9,7 @@ describe('Tests for invalid Email',function(){
 
     it('tld can not start with dot “.”',function(){
         let isValid=validateEmail('abc@.com.my');
-        assert.equal(isValid,'tld can not start with .');
+        assert.equal(isValid,'tld can not start with dot');
     });
 
     it('last tld must contains at least two characters',function(){
@@ -29,7 +29,7 @@ describe('Tests for invalid Email',function(){
 
     it('email’s 1st character can not start with “.”',function(){
         let isValid=validateEmail('.abc@abc.com');
-        assert.equal(isValid,'email’s 1st character can not start with .');
+        assert.equal(isValid,'email’s 1st character can not start with dot');
     });
 
     it('email’s is only allow character, digit, underscore and dash',function(){
