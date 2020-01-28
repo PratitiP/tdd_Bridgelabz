@@ -11,4 +11,10 @@ describe('Tests for function feetToInch with feet number',function(){
         let res=unitConvertor.feetToInchConversion(0);
         assert.equal(res,0);
     });
+
+    it('check function for NaN argument - type check',function(){
+        let res=unitConvertor.feetToInchConversion('s');
+        assert.equal(res,0);
+    });
+
 });
