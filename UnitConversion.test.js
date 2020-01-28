@@ -46,5 +46,35 @@ describe('Tests for function feetToInch with feet number',function(){
         let res=unitConvertor.unitConversion(1,'in','ft');
         assert.notEqual(res,1);
     });
+
+    it('check function for 3ft=1yd',function(){
+        let res=unitConvertor.unitConversion(3,'ft','yd');
+        assert.equal(res,1);
+    });
+
+    it('check function for 1ft!=1yd',function(){
+        let res=unitConvertor.unitConversion(1,'ft','yd');
+        assert.notEqual(res,1);
+    });
+
+    it('check function for 1in!=1yd',function(){
+        let res=unitConvertor.unitConversion(1,'in','yd');
+        assert.notEqual(res,1);
+    });
+
+    it('check function for 1yd=36in',function(){
+        let res=unitConvertor.unitConversion(1,'yd','in');
+        assert.equal(res,36);
+    });
+
+    it('check function for 36in=1yd',function(){
+        let res=unitConvertor.unitConversion(36,'in','yd');
+        assert.equal(res,1);
+    });
+
+    it('check function for 1yd=3ft',function(){
+        let res=unitConvertor.unitConversion(1,'yd','ft');
+        assert.equal(res,3);
+    });
 });
 
