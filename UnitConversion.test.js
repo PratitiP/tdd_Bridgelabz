@@ -17,4 +17,10 @@ describe('Tests for function feetToInch with feet number',function(){
         assert.equal(res,0);
     });
 
+    it('check function for negative argument',function(){
+        let res=unitConvertor.feetToInchConversion(-5);
+        assert.equal(res,0);
+    });
+
+
 });
