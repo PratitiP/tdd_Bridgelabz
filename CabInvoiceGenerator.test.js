@@ -1,4 +1,5 @@
-const assert=require('assert');
+const assert=require('chai').assert;
+const expect=require('chai').expect;
 const cabInvoiceGen=require('./CabInvoiceGenerator');
 
 describe('Tests for function getRides with userID', function(){
@@ -24,7 +25,9 @@ describe('Tests for function getRides with userID', function(){
 
     it('check function for valid userID to return rides from repo',function(){
         let res=cabInvoiceGen.getRides(1);
-        assert.notEqual(res,0);
+        // expect(typeof(res)).equals("object");
+        assert.typeOf(res,'array');
+        // assert.equal(typeof(res),'object');
     });
 
     it('check function for userID which does not exists in repo',function(){

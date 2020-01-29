@@ -1,5 +1,5 @@
 const sum=require('./sum_controller');
-const assert=require('assert');
+const assert=require('chai').assert;
 
 describe('Test for sum of two numbers',function(){
     it('check function for no arguments',function(){
