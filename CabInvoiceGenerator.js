@@ -1,5 +1,4 @@
-
-const BASE_FAIR_NORMAL = 5, 
+const BASE_FAIR_NORMAL = 5,
     FARE_PER_KM_NORMAL = 10,
     FARE_PER_MIN_NORMAL = 1,
     BASE_FAIR_PREMIUM = 20,
@@ -8,17 +7,16 @@ const BASE_FAIR_NORMAL = 5,
     CATEGORY_NORMAL = 'normal',
     CATEGORY_PREMIUM = 'premium';
 
-exports.calculateFare=function (distance, time, category) {
+exports.calculateFare = function (distance, time, category) {
 
-    //case 1 - check function for no arguments, partial argumants, non number arguments, negative arguments
-    if (distance === "" || time === "" || 
+    //cases - check function for no arguments, partial argumants, non number arguments, negative arguments
+    if (distance === "" || time === "" ||
+        distance === null || time === null ||
         typeof (distance) === 'undefined' || typeof (time) === 'undefined' ||
-        typeof (distance) !== 'number' || typeof (time) !== 'number'||
+        typeof (distance) !== 'number' || typeof (time) !== 'number' ||
         distance < 0 || time < 0)
 
         return 0;
-
-
 
     //for category
     //case 5 - check if category is undefined
@@ -26,33 +24,26 @@ exports.calculateFare=function (distance, time, category) {
         category = 'normal';
 
     //case 6 - check if category is other than normal or premium
-    let cat=category.toLowerCase()
-    if(cat === CATEGORY_NORMAL && cat===CATEGORY_PREMIUM)
+    let cat = category.toLowerCase()
+    if (cat === CATEGORY_NORMAL && cat === CATEGORY_PREMIUM)
         return 0;
 
     //calculate fare for passed values
     let fare = 0;
-    if (category == CATEGORY_NORMAL) {
+    if (category === CATEGORY_NORMAL) {
         fare = BASE_FAIR_NORMAL + distance * FARE_PER_KM_NORMAL + time * FARE_PER_MIN_NORMAL;
-    } else if (category == CATEGORY_PREMIUM) {
+    } else if (category === CATEGORY_PREMIUM) {
         fare = BASE_FAIR_PREMIUM + distance * FARE_PER_KM_PREMIUM + time * FARE_PER_MIN_PREMIUM;
-
     }
     return fare;
 }
 
-exports.calAggregateFare=function(rides) {
+exports.calAggregateFare = function (rides) {
 
-    //case 1 - check function for no arguments
-    if(rides==undefined)
-        return 0;
-
-    //case 2 - check function for type of rides
-    if(typeof(rides)!='object')
-        return 0;
-
-    //case 3 - check function for rides size if it is zero
-    if (rides.length == 0)
+    //case 1 - check function for no arguments, type of rides, rides size if it is zero
+    if (rides === undefined ||
+        typeof (rides) !== 'object' ||
+        rides.length === 0)
         return 0;
 
     //case 4 - check function for valid input rides
@@ -78,30 +69,23 @@ exports.cabInvoiceGenerator = function (rides) {
 }
 
 exports.getRides = function (userID) {
-    //case 1 - check function for no arguments
-    if (userID == "")
-        return 0;
+    //cases - check function for empty string arguments, undefined arguments, NaN, negative argument
+    if (userID === "" ||
+        userID === undefined ||
+        isNaN(userID) ||
+        userID < 0)
 
-    //case 2 - check function for undefined arguments
-    if (userID == undefined)
-        return 0;
-
-    //case 3 - check function for non number arguments
-    if (isNaN(userID))
-        return 0;
-
-    //case 4 - check function for negative number arguments
-    if (isNaN(userID))
         return 0;
 
 
-    //case 5 - get rides for userID from RidesRepo
+
+    //get rides for userID from RidesRepo
     let ridesForUserID = RideRepository.find(obj => {
         if (obj.userID === userID)
             return obj;
     });
 
-    //case 6 - check if user exists in repo
+    //case 5 - check if user exists in repo
     if (ridesForUserID == undefined)
         return 0;
 

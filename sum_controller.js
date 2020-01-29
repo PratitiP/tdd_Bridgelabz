@@ -1,5 +1,5 @@
 function sum(a, b) {
-    //case 1 : check function for empty string or undefined or null
+    //case 1 : check function for empty string or undefined or null or NaN
     if (a === "" || b === "" ||
         typeof (a) == 'undefined' || typeof (b) == 'undefined' ||
         isNaN(a) || isNaN(b) || a === null || b === null)

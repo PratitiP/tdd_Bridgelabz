@@ -50,7 +50,7 @@ function validateEmail(email){
     //case 10 - email’s tld which has two characters can not contains digit
     pat=/^[A-Za-z]+$/;
     for(let i=0;i<tldArr.length;i++){
-        if(tldArr[i].length==2 && !pat.test(tldArr[i])){
+        if(tldArr[i].length===2 && !pat.test(tldArr[i])){
             return 'email’s tld which has two characters can not contains digit'
         }
     }
