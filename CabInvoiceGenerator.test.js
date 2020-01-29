@@ -26,7 +26,7 @@ describe('Tests for function getRides with userID', function(){
     it('check function for valid userID to return rides from repo',function(){
         let res=cabInvoiceGen.getRides(1);
         // expect(typeof(res)).equals("object");
-        assert.typeOf(res,'array');
+        assert.typeOf(res,'array','rides is an array of objects');
         // assert.equal(typeof(res),'object');
     });
 
