@@ -11,7 +11,7 @@ exports.unitConversion = function (length, lUnit, cUnit) {
     //case 1 - null check , type check, negative arguments
     if (length === undefined ||
         isNaN(length) ||
-        length < 0 )
+        length < 0 ) 
         return 0;
 
     let res = 0;

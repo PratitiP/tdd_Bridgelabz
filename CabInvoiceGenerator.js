@@ -127,5 +127,5 @@ let rides2 = [
 let RideRepository = [{ userID: 1, rides: rides1 }, { userID: 2, rides: rides2 }];
 
 // console.log(this.calculateFare(30,50));
-let userRides = this.getRides(1);
-this.cabInvoiceGenerator(userRides);
+// let userRides = this.getRides(1);
+// this.cabInvoiceGenerator(userRides);

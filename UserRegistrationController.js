@@ -1,6 +1,7 @@
 class UserRegistrationController{
     isValidName(name){
         let regexName=RegExp(/^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/);
+     console.log(  arguments);
         return regexName.test(name);
     }
 

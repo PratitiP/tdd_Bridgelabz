@@ -1,5 +1,5 @@
 /**
- * Sum two numbers
+ * Sum two numbers 
  * @param {number} a 
  * @param {number} b
  * @return {number} sum
