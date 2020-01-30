@@ -7,6 +7,13 @@ const BASE_FAIR_NORMAL = 5,
     CATEGORY_NORMAL = 'normal',
     CATEGORY_PREMIUM = 'premium';
 
+    /**
+     * calculate fare
+     * @param {number} distance
+     * @param {number} time
+     * @param {string} category
+     * @return fare
+     */
 exports.calculateFare = function (distance, time, category) {
 
     //cases - check function for no arguments, partial argumants, non number arguments, negative arguments
@@ -38,6 +45,11 @@ exports.calculateFare = function (distance, time, category) {
     return fare;
 }
 
+/**
+ * Calculate total fare for all rides
+ * @param {array} rides - array of ride objects
+ * @returns {number} totalAggregateFare
+ */
 exports.calAggregateFare = function (rides) {
 
     //case 1 - check function for no arguments, type of rides, rides size if it is zero
@@ -55,6 +67,11 @@ exports.calAggregateFare = function (rides) {
     return totalAggregateFare;
 }
 
+/**
+ * Generate cab invoice
+ * @param {array} rides
+ * @returns {object} invoice - totalFare, noOfRides, averageFare
+ */
 exports.cabInvoiceGenerator = function (rides) {
     let totalAggregateFare = this.calAggregateFare(rides);
     let nRides = rides.length;
@@ -68,6 +85,11 @@ exports.cabInvoiceGenerator = function (rides) {
 
 }
 
+/**
+ * Get rides for a user
+ * @param {number} userID
+ * @return {array} rides
+ */
 exports.getRides = function (userID) {
     //cases - check function for empty string arguments, undefined arguments, NaN, negative argument
     if (userID === "" ||
@@ -76,8 +98,6 @@ exports.getRides = function (userID) {
         userID < 0)
 
         return 0;
-
-
 
     //get rides for userID from RidesRepo
     let ridesForUserID = RideRepository.find(obj => {

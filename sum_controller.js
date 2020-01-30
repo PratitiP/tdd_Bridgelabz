@@ -1,3 +1,9 @@
+/**
+ * Sum two numbers
+ * @param {number} a 
+ * @param {number} b
+ * @return {number} sum
+ */
 function sum(a, b) {
     //case 1 : check function for empty string or undefined or null or NaN
     if (a === "" || b === "" ||

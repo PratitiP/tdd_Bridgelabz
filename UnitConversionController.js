@@ -1,5 +1,12 @@
 
-
+/**
+ * Convert from one unit to other unit
+ * @param {number} length
+ * @param {string} lUnit
+ * @param {string} cUnit
+ * 
+ * @return res
+ */
 exports.unitConversion = function (length, lUnit, cUnit) {
     //case 1 - null check , type check, negative arguments
     if (length === undefined ||
